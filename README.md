@@ -1,99 +1,89 @@
 🚀 ArgoCD Application Deployment using GitOps
-
-
-
-
-
-
+<p align="center"> <img src="https://argo-cd.readthedocs.io/en/stable/assets/argo.png" width="120"/> </p> <p align="center"> <b>GitOps Continuous Delivery for Kubernetes using ArgoCD</b> </p>
 📌 Overview
 
-This project demonstrates end-to-end application deployment using ArgoCD on Kubernetes following GitOps principles.
+This project demonstrates end-to-end application deployment on Kubernetes using ArgoCD following GitOps principles.
 
-It covers three real-world approaches:
+It includes:
 
 🔹 UI-based Deployment (NGINX)
 🔹 CLI-based Deployment (Apache)
-🔹 Declarative GitOps Deployment (Recommended)
-🧠 Theory (Core Concepts)
-🔸 What is ArgoCD?
+🔹 Declarative GitOps Deployment (Best Practice)
 
-ArgoCD is a declarative GitOps continuous delivery tool for Kubernetes.
+👉 The goal is to show real DevOps workflow:
 
-👉 It continuously:
+Git → ArgoCD → Kubernetes (Auto Sync & Self-Heal)
 
-Monitors Git repository
+🧠 What is ArgoCD?
+
+ArgoCD is a declarative GitOps continuous delivery tool for Kubernetes that:
+
+Tracks Git repositories
 Compares desired vs actual state
-Automatically syncs changes
-🔸 What is GitOps?
+Automatically syncs applications to cluster
+🔄 What is GitOps?
 
 GitOps means:
 
-Git = Single Source of Truth
+👉 Git = Single Source of Truth
 
-All infrastructure & application configs are stored in Git and automatically applied.
-
-🔸 Deployment Approaches Comparison
-Approach	Type	GitOps	Use Case
-UI	Imperative	❌ No	Quick testing
-CLI	Imperative	❌ No	Automation scripts
-Declarative	Declarative	✅ Yes	Production (Best Practice)
-
-<img width="880" height="517" alt="image" src="https://github.com/user-attachments/assets/35916427-67b4-404b-9e81-e3e01eba4863" />
-<img width="1258" height="579" alt="image" src="https://github.com/user-attachments/assets/7df6d19f-ecb8-4025-b7d4-da676f09f385" />
-
-🔍 Flow Explanation
+All configs stored in Git
+Any change in Git → auto deployed
+Ensures consistency & auditability
+🏗️ Architecture
+6
+🔍 Flow
 Developer pushes code to GitHub
-ArgoCD continuously watches the repo
+ArgoCD monitors repository
 Detects changes in manifests
-Applies them to Kubernetes cluster
+Syncs with Kubernetes cluster
 Ensures cluster state = Git state
 ⚙️ Prerequisites
-
-Before starting, ensure:
-
-✅ Kubernetes Cluster (Kind / EKS / AKS)
-✅ ArgoCD Installed
-✅ kubectl configured
-✅ Git repository with manifests
-✅ ArgoCD CLI installed
-🚀 Implementation Steps
+Kubernetes Cluster (Kind / EKS / AKS)
+ArgoCD installed
+kubectl configured
+GitHub repository with manifests
+ArgoCD CLI
+🚀 Implementation
 🔹 1. UI-Based Deployment (NGINX)
 📌 Steps
 Login to ArgoCD UI
-Click New App
-Provide:
+Click New Application
+Configure:
 Repo URL
 Path: ui_approach/nginx
 Cluster & Namespace
 📷 Output
-Application created via UI
-Manual sync required
 
-👉 Observation:
+👉 Result
 
-Easy but not GitOps compliant
+App created manually
+Requires manual sync
+
+⚠️ Not GitOps compliant
+
 🔹 2. CLI-Based Deployment (Apache)
 📌 Command
 argocd app create apache-app \
-  --repo https://github.com/<your-repo>.git \
+  --repo https://github.com/sutar-rushikesh/argocd-demos.git \
   --path cli_approach/apache \
   --dest-server https://<cluster-endpoint> \
   --dest-namespace default \
   --sync-policy automated \
   --self-heal \
   --auto-prune
-📌 Key Flags Explained
-Flag	Meaning
---sync-policy automated	Auto deploy changes
---self-heal	Fix manual drift
---auto-prune	Remove unused resources
+📷 Output
 
-👉 Observation:
+📌 Key Features
+Feature	Description
+Auto Sync	Deploys automatically
+Self Heal	Fixes manual changes
+Auto Prune	Deletes unused resources
 
-Faster than UI
-Still not fully GitOps (manual trigger)
-🔹 3. Declarative GitOps Deployment (Best Practice) ✅
-📌 Create Application YAML
+👉 Faster but still partially manual
+
+🔹 3. Declarative GitOps Deployment ✅
+📌 Application YAML
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -103,7 +93,7 @@ spec:
     namespace: default
     server: https://kubernetes.default.svc
   source:
-    repoURL: https://github.com/<your-repo>.git
+    repoURL: https://github.com/sutar-rushikesh/argocd-demos.git
     path: declarative/nginx
     targetRevision: HEAD
   syncPolicy:
@@ -113,68 +103,65 @@ spec:
 📌 Apply
 kubectl apply -f application.yaml
 
-👉 Observation:
+👉 Fully automated GitOps approach
 
-Fully GitOps
-Production-ready approach
-🧪 Testing (Real DevOps Scenario)
-🔹 Test Case 1: Scaling
+📊 Deployment Results
+🔹 Applications Dashboard
+
+🔹 NGINX Deployment Tree
+
+🔹 Apache Deployment Tree
+
+🌐 Application Access
+Application	URL
+NGINX	http://<EC2-IP>:8081
+Apache	http://<EC2-IP>:8082
+📷 NGINX
+
+📷 Apache
+
+🧪 Testing (Real DevOps Use Cases)
+🔹 Test 1: Auto Sync
 Update replicas in Git
 Commit changes
-ArgoCD detects change
-Sync automatically
+ArgoCD auto syncs
 
-👉 Result: Pods scale automatically
+👉 Pods scale automatically
 
-🔹 Test Case 2: Drift Detection
-Delete pod manually:
+🔹 Test 2: Self-Healing
 kubectl delete pod <pod-name>
-ArgoCD auto recreates it
 
-👉 Result: Self-healing works
+👉 ArgoCD recreates pod automatically
 
-🔁 Self-Healing & Auto-Sync
-✅ Features Demonstrated
-Drift detection
-Auto-sync from Git
-Self-healing of deleted resources
-Auto-pruning unused resources
-🌐 Application Access
-
-From your setup:
-
-NGINX → http://<EC2-IP>:8081
-Apache → http://<EC2-IP>:8082
-
-👉 Verified:
-
-✅ NGINX running
-✅ Apache running
-🧾 Common ArgoCD CLI Commands
+🔁 Key Features Demonstrated
+✅ GitOps Workflow
+✅ Auto Sync
+✅ Self-Healing
+✅ Drift Detection
+✅ Auto Pruning
+🧾 Common ArgoCD Commands
 Command	Description
-argocd login <server>	Login to ArgoCD
+argocd login <server>	Login
 argocd app list	List apps
-argocd app get <app>	App details
-argocd app sync <app>	Sync app
-argocd app delete <app>	Delete app
-argocd cluster list	Show clusters
-⚠️ Issues Faced & Fixes
-❌ Issue:
+argocd app get <app>	Details
+argocd app sync <app>	Sync
+argocd app delete <app>	Delete
+argocd cluster list	Clusters
+⚠️ Issue Faced & Fix
+❌ Error
 InvalidSpecError: cluster not found
-✅ Fix:
-Corrected cluster URL
+✅ Fix
+Corrected cluster endpoint
 Verified using:
 argocd cluster list
-📊 Key Learnings
-Difference between Imperative vs Declarative
+📚 Key Learnings
+Difference: Imperative vs Declarative
 Real GitOps workflow
-ArgoCD architecture
-Self-healing mechanism
-Production deployment strategies
+ArgoCD architecture understanding
+Kubernetes deployment automation
+Production-ready approach
 🧨 Cleanup
 kind delete cluster --name argocd-cluster
 
 👨‍💻 Author
-
 Rushikesh Sutar
-
