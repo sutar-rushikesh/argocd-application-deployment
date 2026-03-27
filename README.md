@@ -1,167 +1,122 @@
 🚀 ArgoCD Application Deployment using GitOps
-<p align="center"> <img src="https://argo-cd.readthedocs.io/en/stable/assets/argo.png" width="120"/> </p> <p align="center"> <b>GitOps Continuous Delivery for Kubernetes using ArgoCD</b> </p>
-📌 Overview
+<p align="center"> <img src="https://argo-cd.readthedocs.io/en/stable/assets/argo.png" width="120"/> </p> <p align="center"> <b>GitOps Continuous Delivery for 🚀 ArgoCD Application Deployment (GitOps-Based Kubernetes Deployment)
+📌 Project Overview
 
-This project demonstrates end-to-end application deployment on Kubernetes using ArgoCD following GitOps principles.
+This project demonstrates a production-ready GitOps workflow using ArgoCD to deploy applications on Kubernetes. It eliminates manual deployment errors and ensures consistent, automated, and version-controlled application delivery.
 
-It includes:
+🔍 Problem Solved:
+Traditional deployments are manual, error-prone, and lack traceability. This project implements GitOps principles, where Git becomes the single source of truth, enabling:
 
-🔹 UI-based Deployment (NGINX)
-🔹 CLI-based Deployment (Apache)
-🔹 Declarative GitOps Deployment (Best Practice)
+Automated deployments
+Easy rollback
+Improved reliability and auditability
 
-👉 The goal is to show real DevOps workflow:
+💡 Designed to reflect real-world DevOps practices used in modern cloud-native environments.
 
-Git → ArgoCD → Kubernetes (Auto Sync & Self-Heal)
-
-🧠 What is ArgoCD?
-
-ArgoCD is a declarative GitOps continuous delivery tool for Kubernetes that:
-
-Tracks Git repositories
-Compares desired vs actual state
-Automatically syncs applications to cluster
-🔄 What is GitOps?
-
-GitOps means:
-
-👉 Git = Single Source of Truth
-
-All configs stored in Git
-Any change in Git → auto deployed
-Ensures consistency & auditability
 🏗️ Architecture
-6
-🔍 Flow
-Developer pushes code to GitHub
-ArgoCD monitors repository
-Detects changes in manifests
-Syncs with Kubernetes cluster
-Ensures cluster state = Git state
-⚙️ Prerequisites
-Kubernetes Cluster (Kind / EKS / AKS)
+
+This project follows a GitOps-based deployment architecture:
+
+Developer pushes code/config → GitHub repo
+ArgoCD monitors repo changes
+ArgoCD syncs state → Kubernetes cluster
+Application deployed automatically
+🔁 Flow:
+Developer → GitHub Repo → ArgoCD → Kubernetes Cluster
+📊 Architecture Diagram
+[ Developer ]
+      |
+      v
+[ GitHub Repository ]
+      |
+      v
+[ ArgoCD Controller ]
+      |
+      v
+[ Kubernetes Cluster ]
+      |
+      v
+[ Application Running ]
+
+📌 (Add architecture diagram image here if available)
+
+🧰 Tech Stack
+☁️ Cloud / Infra: AWS (EC2 / EKS or Kind cluster)
+☸️ Container Orchestration: Kubernetes
+🚀 GitOps Tool: ArgoCD
+📦 Package Manager: Helm (if used)
+🐳 Containerization: Docker
+🔄 CI/CD: GitHub Actions (optional/extendable)
+📁 Version Control: Git & GitHub
+🔄 CI/CD Workflow (GitOps)
+
+This project follows a GitOps-driven CI/CD approach:
+
+🔁 Pipeline Flow:
+👨‍💻 Developer updates Kubernetes manifests
+📤 Code pushed to GitHub
+🔍 ArgoCD detects changes in repo
+🔄 ArgoCD syncs desired state
+🚀 Application deployed to Kubernetes
+Code → Git Push → ArgoCD Sync → Kubernetes Deployment
+
+💡 No direct kubectl usage — everything is declarative & automated.
+
+📂 Repository Structure
+argocd-application-deployment/
+│
+├── manifests/                # Kubernetes YAML files
+│   ├── deployment.yaml      # Application Deployment
+│   ├── service.yaml         # Service exposure
+│
+├── argocd/                  # ArgoCD application config
+│   └── application.yaml     # ArgoCD app definition
+│
+├── README.md                # Project documentation
+📌 Explanation:
+manifests/ → Contains Kubernetes resources
+argocd/ → Defines how ArgoCD tracks & deploys app
+README.md → Documentation for setup and usage
+⚙️ Setup & Installation
+✅ Prerequisites
+Kubernetes cluster (Kind / Minikube / EKS)
+kubectl installed
 ArgoCD installed
-kubectl configured
-GitHub repository with manifests
-ArgoCD CLI
-🚀 Implementation
-🔹 1. UI-Based Deployment (NGINX)
-📌 Steps
-Login to ArgoCD UI
-Click New Application
-Configure:
-Repo URL
-Path: ui_approach/nginx
-Cluster & Namespace
-📷 Output
+🔧 Step 1: Clone Repository
+git clone https://github.com/sutar-rushikesh/argocd-application-deployment.git
+cd argocd-application-deployment
+🔧 Step 2: Install ArgoCD (if not installed)
+kubectl create namespace argocd
 
-👉 Result
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+🔧 Step 3: Access ArgoCD UI
+kubectl port-forward svc/argocd-server -n argocd 8080:443
+🔧 Step 4: Apply ArgoCD Application
+kubectl apply -f argocd/application.yaml
+🔧 Step 5: Verify Deployment
+kubectl get pods
+kubectl get svc
+🚀 Deployment Strategy
+✅ GitOps-based deployment
+🔁 Auto-sync enabled via ArgoCD
+📦 Declarative Kubernetes manifests
+🔄 Easy rollback using Git history
+✨ Key Features
+🚀 Fully automated deployment using GitOps
+🔄 Continuous synchronization with Git
+📊 Real-time visibility via ArgoCD UI
+🧩 Modular and clean repository structure
+⚡ Fast and reliable deployments
+🔁 Easy rollback capability
+☸️ Kubernetes-native approach
+📸 Screenshots / Proof
 
-App created manually
-Requires manual sync
+Add real screenshots to boost impact
 
-⚠️ Not GitOps compliant
-
-🔹 2. CLI-Based Deployment (Apache)
-📌 Command
-argocd app create apache-app \
-  --repo https://github.com/sutar-rushikesh/argocd-demos.git \
-  --path cli_approach/apache \
-  --dest-server https://<cluster-endpoint> \
-  --dest-namespace default \
-  --sync-policy automated \
-  --self-heal \
-  --auto-prune
-📷 Output
-
-📌 Key Features
-Feature	Description
-Auto Sync	Deploys automatically
-Self Heal	Fixes manual changes
-Auto Prune	Deletes unused resources
-
-👉 Faster but still partially manual
-
-🔹 3. Declarative GitOps Deployment ✅
-📌 Application YAML
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: nginx-app
-spec:
-  destination:
-    namespace: default
-    server: https://kubernetes.default.svc
-  source:
-    repoURL: https://github.com/sutar-rushikesh/argocd-demos.git
-    path: declarative/nginx
-    targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-📌 Apply
-kubectl apply -f application.yaml
-
-👉 Fully automated GitOps approach
-
-📊 Deployment Results
-🔹 Applications Dashboard
-
-🔹 NGINX Deployment Tree
-
-🔹 Apache Deployment Tree
-
-🌐 Application Access
-Application	URL
-NGINX	http://<EC2-IP>:8081
-Apache	http://<EC2-IP>:8082
-📷 NGINX
-
-📷 Apache
-
-🧪 Testing (Real DevOps Use Cases)
-🔹 Test 1: Auto Sync
-Update replicas in Git
-Commit changes
-ArgoCD auto syncs
-
-👉 Pods scale automatically
-
-🔹 Test 2: Self-Healing
-kubectl delete pod <pod-name>
-
-👉 ArgoCD recreates pod automatically
-
-🔁 Key Features Demonstrated
-✅ GitOps Workflow
-✅ Auto Sync
-✅ Self-Healing
-✅ Drift Detection
-✅ Auto Pruning
-🧾 Common ArgoCD Commands
-Command	Description
-argocd login <server>	Login
-argocd app list	List apps
-argocd app get <app>	Details
-argocd app sync <app>	Sync
-argocd app delete <app>	Delete
-argocd cluster list	Clusters
-⚠️ Issue Faced & Fix
-❌ Error
-InvalidSpecError: cluster not found
-✅ Fix
-Corrected cluster endpoint
-Verified using:
-argocd cluster list
-📚 Key Learnings
-Difference: Imperative vs Declarative
-Real GitOps workflow
-ArgoCD architecture understanding
-Kubernetes deployment automation
-Production-ready approach
-🧨 Cleanup
-kind delete cluster --name argocd-cluster
-
-👨‍💻 Author
-Rushikesh Sutar
+📊 ArgoCD Dashboard
+📦 Application Sync Status
+☸️ Running Pods
+✅ Successful Deployment
+/screenshots/argocd-ui.png
+/screenshots/pods-running.png
+/screenshots/app-sync.png
