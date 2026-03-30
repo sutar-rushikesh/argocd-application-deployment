@@ -82,12 +82,16 @@ ArgoCD CLI
 📌 Steps
 
 Login to ArgoCD UI
+
 Click New Application
+
 Configure:
+
 Repo URL
+
 Path: ui_approach/nginx
+
 Cluster & Namespace
-📷 Output
 
 👉 Result
 ### 📷 UI Application Created
@@ -97,7 +101,12 @@ Cluster & Namespace
 </p>
 
 App created manually
+
 Requires manual sync
+<p align="center">
+  <img src="screenshots/step_1.png" width="800"/>
+</p>
+
 
 ⚠️ Not GitOps compliant
 
@@ -118,6 +127,9 @@ argocd app create apache-app \
 ```
 📷 Output
 
+<p align="center">
+  <img src="screenshots/step_2.png" width="800"/>
+</p>
 
 # 📌 Key Features
 
@@ -161,6 +173,9 @@ kubectl apply -f application.yaml
 ```
 
 👉 Fully automated GitOps approach
+<p align="center">
+  <img src="screenshots/step_3.png" width="800"/>
+</p>
 
 
 # 📊 Deployment Results
@@ -170,8 +185,14 @@ kubectl apply -f application.yaml
 🔹 Applications Dashboard
 
 🔹 NGINX Deployment Tree
+<p align="center">
+  <img src="screenshots/step_4.png" width="800"/>
+</p>
 
 🔹 Apache Deployment Tree
+<p align="center">
+  <img src="screenshots/step_5.png" width="800"/>
+</p>
 
 🌐 Application Access
 
@@ -183,8 +204,14 @@ NGINX	http://<EC2-IP>:8081
 Apache	http://<EC2-IP>:8082
 
 📷 NGINX
+<p align="center">
+  <img src="screenshots/step_6.png" width="800"/>
+</p>
 
 📷 Apache
+<p align="center">
+  <img src="screenshots/step_7.png" width="800"/>
+</p>
 
 
 # 🧪 Testing (Real DevOps Use Cases)
