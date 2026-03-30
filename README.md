@@ -13,8 +13,11 @@ This project demonstrates end-to-end application deployment on Kubernetes using 
 It includes:
 
 🔹 UI-based Deployment (NGINX)
+
 🔹 CLI-based Deployment (Apache)
+
 🔹 Declarative GitOps Deployment (Best Practice)
+
 
 👉 The goal is to show real DevOps workflow:
 
