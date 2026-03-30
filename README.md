@@ -210,7 +210,6 @@ argocd cluster list
 
 # 📚 Key Learnings
 
-------------------------------------------------------------------------
 
 Difference: Imperative vs Declarative
 Real GitOps workflow
@@ -219,7 +218,6 @@ Kubernetes deployment automation
 Production-ready approach
 
 # 🧨 Cleanup
-------------------------------------------------------------------------
 
 ``` bash
 kind delete cluster --name argocd-cluster 
