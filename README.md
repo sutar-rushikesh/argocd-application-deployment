@@ -62,9 +62,13 @@ Ensures cluster state = Git state
 
 
 Kubernetes Cluster (Kind / EKS / AKS)
+
 ArgoCD installed
+
 kubectl configured
+
 GitHub repository with manifests
+
 ArgoCD CLI
 
 # 🚀 Implementation
