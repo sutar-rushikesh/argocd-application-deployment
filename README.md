@@ -160,13 +160,14 @@ kubectl delete pod <pod-name>
 # 🧾 Common ArgoCD Commands
 
 Command	Description
+---
 argocd login <server>	Login
 argocd app list	List apps
 argocd app get <app>	Details
 argocd app sync <app>	Sync
 argocd app delete <app>	Delete
 argocd cluster list	Clusters
-
+---
 # ⚠️ Issue Faced & Fix
 
 ❌ Error
@@ -187,8 +188,6 @@ Production-ready approach
 # 🧨 Cleanup
 
 kind delete cluster --name argocd-cluster 
-Rushikesh M.Sutar
-
-
 
 # 👨‍💻 Author
+Rushikesh M.Sutar
