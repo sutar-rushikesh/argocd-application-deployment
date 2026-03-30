@@ -200,7 +200,7 @@ kubectl apply -f application.yaml
 </p>
 
 🌐 Application Access
-To access the UI Kindly open the prts from security group in your instance
+To access the UI Kindly open the ports from security group in your instance
 
 <p align="center">
   <img src="screenshots/step_7.png" width="800"/>
@@ -208,9 +208,9 @@ To access the UI Kindly open the prts from security group in your instance
 
 Application	URL
 
-NGINX	http://<EC2-IP>:8081
+NGINX	http://EC2-IP:8081
 
-Apache	http://<EC2-IP>:8082
+Apache	http://EC2-IP:8082
 
 📷 NGINX
 <p align="center">
