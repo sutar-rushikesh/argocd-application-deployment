@@ -49,6 +49,7 @@ Ensures consistency & auditability
 
 # 🏗️ Architecture
 
+<img width="675" height="651" alt="image" src="https://github.com/user-attachments/assets/3c8bc275-5b22-4296-9f1c-cbb0e3cf4b7c" />
 
 🔍 Flow
 Developer pushes code to GitHub
