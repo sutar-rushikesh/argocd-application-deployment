@@ -198,6 +198,7 @@ argocd app delete <app>	Delete
 argocd cluster list	Clusters
 ```
 # ⚠️ Issue Faced & Fix
+
 ------------------------------------------------------------------------
 
 ❌ Error
@@ -208,6 +209,7 @@ Verified using:
 argocd cluster list
 
 # 📚 Key Learnings
+
 ------------------------------------------------------------------------
 
 Difference: Imperative vs Declarative
