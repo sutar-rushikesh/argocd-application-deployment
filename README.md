@@ -167,7 +167,12 @@ spec:
       prune: true
       selfHeal: true
 
-```      
+```
+<p align="center">
+<img width="1920" height="1080" alt="Screenshot 2026-03-25 111352" src="https://github.com/user-attachments/assets/fc37ba08-f0a7-4d68-b948-f2235f9cc488" />
+<img width="1920" height="1080" alt="Screenshot 2026-03-25 113741" src="https://github.com/user-attachments/assets/f22a11a9-7715-431a-8e6a-f96a402d4741" />
+</p>  
+
 📌 Apply
 
 ``` bash
