@@ -86,7 +86,9 @@ Cluster & Namespace
 👉 Result
 ### 📷 UI Application Created
 
-![UI App](screenshots/step_1.png)
+<p align="center">
+  <img src="screenshots/step_3.png" width="800"/>
+</p>
 
 App created manually
 Requires manual sync
