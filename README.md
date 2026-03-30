@@ -186,9 +186,9 @@ Production-ready approach
 
 # 🧨 Cleanup
 
-kind delete cluster --name argocd-cluster
-
-# 👨‍💻 Author
+kind delete cluster --name argocd-cluster 
 Rushikesh M.Sutar
 
-NavOps Academy
+
+
+# 👨‍💻 Author
