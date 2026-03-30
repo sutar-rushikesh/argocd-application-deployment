@@ -60,6 +60,9 @@ Ensures cluster state = Git state
 
 # ⚙️ Prerequisites
 
+Installed Kind
+Created cluster:
+Follow to create ArgoCD setup: https://github.com/sutar-rushikesh/argocd-kind-setup.git
 
 Kubernetes Cluster (Kind / EKS / AKS)
 
@@ -78,7 +81,6 @@ ArgoCD CLI
 
 📌 Steps
 
-
 Login to ArgoCD UI
 Click New Application
 Configure:
@@ -91,7 +93,7 @@ Cluster & Namespace
 ### 📷 UI Application Created
 
 <p align="center">
-  <img src="screenshots/step_3.png" width="800"/>
+  <img src="screenshots/step_1.png" width="800"/>
 </p>
 
 App created manually
