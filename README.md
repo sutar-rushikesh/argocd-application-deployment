@@ -62,7 +62,9 @@ Ensures cluster state = Git state
 
 Installed Kind
 Created cluster:
-Follow to create ArgoCD setup: https://github.com/sutar-rushikesh/argocd-kind-setup.git
+
+Follow to create ArgoCD setup: 
+https://github.com/sutar-rushikesh/argocd-kind-setup.git
 
 Kubernetes Cluster (Kind / EKS / AKS)
 
@@ -103,10 +105,6 @@ Cluster & Namespace
 App created manually
 
 Requires manual sync
-<p align="center">
-  <img src="screenshots/step_1.png" width="800"/>
-</p>
-
 
 ⚠️ Not GitOps compliant
 
@@ -125,10 +123,14 @@ argocd app create apache-app \
   --self-heal \
   --auto-prune
 ```
+<p align="center">
+  <img src="screenshots/step_6.png" width="800"/>
+</p>
+
 📷 Output
 
 <p align="center">
-  <img src="screenshots/step_2.png" width="800"/>
+  <img src="screenshots/step_4.png" width="800"/>
 </p>
 
 # 📌 Key Features
@@ -183,10 +185,13 @@ kubectl apply -f application.yaml
 
 
 🔹 Applications Dashboard
+<p align="center">
+  <img src="screenshots/step_4.png" width="800"/>
+</p>
 
 🔹 NGINX Deployment Tree
 <p align="center">
-  <img src="screenshots/step_4.png" width="800"/>
+  <img src="screenshots/step_2.png" width="800"/>
 </p>
 
 🔹 Apache Deployment Tree
@@ -195,7 +200,11 @@ kubectl apply -f application.yaml
 </p>
 
 🌐 Application Access
+To access the UI Kindly open the prts from security group in your instance
 
+<p align="center">
+  <img src="screenshots/step_7.png" width="800"/>
+</p>
 
 Application	URL
 
@@ -205,12 +214,12 @@ Apache	http://<EC2-IP>:8082
 
 📷 NGINX
 <p align="center">
-  <img src="screenshots/step_6.png" width="800"/>
+  <img src="screenshots/step_9.png" width="800"/>
 </p>
 
 📷 Apache
 <p align="center">
-  <img src="screenshots/step_7.png" width="800"/>
+  <img src="screenshots/step_8.png" width="800"/>
 </p>
 
 
