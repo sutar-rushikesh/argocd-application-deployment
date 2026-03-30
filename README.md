@@ -84,6 +84,9 @@ Cluster & Namespace
 📷 Output
 
 👉 Result
+### 📷 UI Application Created
+
+![UI App](screenshots/step_1.png)
 
 App created manually
 Requires manual sync
