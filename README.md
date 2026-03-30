@@ -1,4 +1,4 @@
-                        🚀 ArgoCD Application Deployment using GitOps
+### 🚀 ArgoCD Application Deployment using GitOps
 
 <p align="center"> <img src="https://argo-cd.readthedocs.io/en/stable/assets/argo.png" width="120"/> </p> <p align="center"> <b>GitOps Continuous Delivery for Kubernetes using ArgoCD</b> </p>
 📌 Overview
