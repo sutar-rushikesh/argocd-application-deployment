@@ -21,18 +21,24 @@ It includes:
 
 👉 The goal is to show real DevOps workflow:
 
+
 Git → ArgoCD → Kubernetes (Auto Sync & Self-Heal)
 
+
 🧠 What is ArgoCD?
+
 
 ArgoCD is a declarative GitOps continuous delivery tool for Kubernetes that:
 
 Tracks Git repositories
 Compares desired vs actual state
 Automatically syncs applications to cluster
+
 🔄 What is GitOps?
 
+
 GitOps means:
+
 
 👉 Git = Single Source of Truth
 
@@ -40,8 +46,9 @@ All configs stored in Git
 Any change in Git → auto deployed
 Ensures consistency & auditability
 
+
 # 🏗️ Architecture
-------------------------------------------------------------------------
+
 
 🔍 Flow
 Developer pushes code to GitHub
@@ -51,7 +58,7 @@ Syncs with Kubernetes cluster
 Ensures cluster state = Git state
 
 # ⚙️ Prerequisites
-------------------------------------------------------------------------
+
 
 Kubernetes Cluster (Kind / EKS / AKS)
 ArgoCD installed
@@ -60,11 +67,12 @@ GitHub repository with manifests
 ArgoCD CLI
 
 # 🚀 Implementation
-------------------------------------------------------------------------
+
 
 🔹 1. UI-Based Deployment (NGINX)
+
 📌 Steps
-------------------------------------------------------------------------
+
 
 Login to ArgoCD UI
 Click New Application
@@ -83,6 +91,7 @@ Requires manual sync
 
 🔹 2. CLI-Based Deployment (Apache)
 
+
 📌 Command
 
 ``` bash
@@ -97,15 +106,18 @@ argocd app create apache-app \
 ```
 📷 Output
 
+
 # 📌 Key Features
-------------------------------------------------------------------------
+
 
 Feature	Description
 Auto Sync	Deploys automatically
 Self Heal	Fixes manual changes
 Auto Prune	Deletes unused resources
 
+
 👉 Faster but still partially manual
+
 
 🔹 3. Declarative GitOps Deployment ✅
 
@@ -135,10 +147,13 @@ spec:
 ``` bash
 kubectl apply -f application.yaml
 ```
+
 👉 Fully automated GitOps approach
 
+
 # 📊 Deployment Results
-------------------------------------------------------------------------
+
+
 
 🔹 Applications Dashboard
 
@@ -147,6 +162,7 @@ kubectl apply -f application.yaml
 🔹 Apache Deployment Tree
 
 🌐 Application Access
+
 
 Application	URL
 
@@ -158,8 +174,9 @@ Apache	http://<EC2-IP>:8082
 
 📷 Apache
 
+
 # 🧪 Testing (Real DevOps Use Cases)
-------------------------------------------------------------------------
+
 
 🔹 Test 1: Auto Sync
 Update replicas in Git
@@ -175,8 +192,9 @@ kubectl delete pod <pod-name>
 ```
 👉 ArgoCD recreates pod automatically
 
+
 # 🔁 Key Features Demonstrated
-------------------------------------------------------------------------
+
 
 ✅ GitOps Workflow
 ✅ Auto Sync
@@ -185,7 +203,7 @@ kubectl delete pod <pod-name>
 ✅ Auto Pruning
 
 # 🧾 Common ArgoCD Commands
-------------------------------------------------------------------------
+
 
 Command	Description
 
@@ -199,7 +217,6 @@ argocd cluster list	Clusters
 ```
 # ⚠️ Issue Faced & Fix
 
-------------------------------------------------------------------------
 
 ❌ Error
 InvalidSpecError: cluster not found
